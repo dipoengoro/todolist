@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = 3000;
 
+app.set('view engine', 'ejs')
+
 app.get('/', (req, res) => {
   res.send("It is working")
 })
