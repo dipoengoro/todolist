@@ -7,6 +7,7 @@ let items = []
 
 app.use(express.static("public"))
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.static('public'))
 
 app.set('view engine', 'ejs')
 
@@ -17,8 +18,7 @@ app.get('/', (req, res) => {
   let options = {
     weekday: 'long',
     day: 'numeric',
-    month: 'long',
-    year: 'numeric'
+    month: 'long'
   }
 
   let day = date.toLocaleDateString('id-ID', options)
@@ -29,6 +29,10 @@ app.post('/', (req, res) => {
   let item = req.body.newItem
   items.push(item)
   res.redirect('/')
+})
+
+app.get('/about', (req, res) => {
+  res.render('about')
 })
 
 app.listen(PORT, () => {
