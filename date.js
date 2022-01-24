@@ -1,12 +1,5 @@
-exports.getDate = function () {
-  let date = new Date()
-  let currentDay = date.getDay()
-
-  let options = {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long'
-  }
-
-  return date.toLocaleDateString('id-ID', options)
+exports.getDate = function (locale, options) {
+  const date = new Date()
+  const currentDay = date.getDay()
+  return date.toLocaleDateString(locale, options)
 }

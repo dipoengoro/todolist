@@ -4,7 +4,7 @@ const date = require(__dirname + '/date.js')
 
 const app = express()
 const PORT = 3000
-let items = []
+const items = []
 
 app.use(express.static("public"))
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -13,12 +13,18 @@ app.use(express.static('public'))
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-  let day = date.getDate()
+  const options = {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long'
+  }
+
+  const day = date.getDate('id-ID', options)
   res.render('list', {day: day, list: items})
 })
 
 app.post('/', (req, res) => {
-  let item = req.body.newItem
+  const item = req.body.newItem
   items.push(item)
   res.redirect('/')
 })
