@@ -7,8 +7,11 @@
 </head>
 
 <body>
+  <h1><%= day %></h1>
   <ul>
-    <li></li>
+    <% for(var i = 0; i < list.length; i++) { %>
+    <li><%= list[i] %></li>
+    <% } %>
   </ul>
 
   <form action="/" method="post">

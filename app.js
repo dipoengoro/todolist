@@ -1,8 +1,9 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require('express')
+const bodyParser = require('body-parser')
 
-const app = express();
-const PORT = 3000;
+const app = express()
+const PORT = 3000
+var items = []
 
 app.use(express.static("public"))
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -12,7 +13,6 @@ app.set('view engine', 'ejs')
 app.get('/', (req, res) => {
   var date = new Date()
   var currentDay = date.getDay()
-  // var currentDay = 6
 
   var options = {
     weekday: 'long',
@@ -22,14 +22,13 @@ app.get('/', (req, res) => {
   }
 
   var day = date.toLocaleDateString('id-ID', options)
-  res.render('list', {day: day})
+  res.render('list', {day: day, list: items})
 })
 
 app.post('/', (req, res) => {
   var item = req.body.newItem
-  var items = []
   items.push(item)
-  res.send('Received')
+  res.redirect('/')
 })
 
 app.listen(PORT, () => {
